@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/api/v1/usuarios/login"; //se conecta con el usuario 
+const API_URL = "http://192.168.1.24:8080/api/v2/usuarios"; 
   
 function login() {
   const email = document.getElementById("email").value.trim();
@@ -9,7 +9,7 @@ function login() {
     return;
   }
 
-  fetch("http://localhost:8080/api/v1/usuarios/login", {
+  fetch("http://192.168.1.24:8080/api/v2/usuarios/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
@@ -35,5 +35,4 @@ document.getElementById("btn-logout").addEventListener("click", () => {
   localStorage.removeItem("usuario");
   window.location.reload();
 });
-
 

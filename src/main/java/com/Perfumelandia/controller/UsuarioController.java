@@ -2,28 +2,40 @@ package com.Perfumelandia.controller;
 
 import com.Perfumelandia.model.Usuario;
 import com.Perfumelandia.service.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+
+
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+
 
 @RestController
-@RequestMapping("/api/v1/usuarios")
+@RequestMapping("/api/v1/usuarios") 
+@CrossOrigin
+@Tag(name="Usuarios",
+    description="Operaciones de los Usuarios") 
 public class UsuarioController {
-
     @Autowired
     private UsuarioService service;
 
+    @Operation(summary="Registar Usuario",
+                description="Registra un usuario en la abse de datos")
     @PostMapping
     public Usuario registrar(@RequestBody Usuario u) {
         return service.saveUsuario(u);
     }
 
-    @GetMapping
-    public List<Usuario> obtenerUsuarios() {
-        return service.getUsuarios();
-    }
-
+    @Operation(summary="Validar Usuario",
+                description="Valida que el usuario exista en la bd")
     @PostMapping("/login")
     public Usuario login(@RequestBody Usuario datos) {
         return service.login(datos.getEmail(), datos.getPassword());

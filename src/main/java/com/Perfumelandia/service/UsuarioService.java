@@ -2,44 +2,27 @@ package com.Perfumelandia.service;
 
 import com.Perfumelandia.model.Usuario;
 import com.Perfumelandia.repository.UsuarioRepository;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
-
-
 
 @Service
 public class UsuarioService {
 
-    @Autowired
+    @Autowired //Inyectar el repositorio de usuario
     private UsuarioRepository repo;
-
+    //Método para registrar usuarios
     public Usuario saveUsuario(Usuario u) {
         return repo.save(u);
     }
-
-    public List<Usuario> getUsuarios() {
-        return repo.findAll();
-    }
-
-    public Usuario getUsuarioId(int id) {
-        return repo.findById(id).orElse(null);
-    }
-
-    public Usuario updateUsuario(Usuario u) {
-        return repo.save(u);
-    }
-
-    public String deleteUsuario(int id) {
-        repo.deleteById(id);
-        return "Usuario eliminado";
-    }
-
-    public int totalUsuarios() {
-        return repo.findAll().size();
-    }
-
     public Usuario login(String email, String password) {
-        return repo.findByEmailAndPassword(email, password);
-    }    
+      return repo.findByEmailAndPassword(email, password);
+    }   
+    //Método que autentifica los usuarios
+       public Optional<Usuario> autenticar(String email, String password) {
+     throw new Error("Unresolved compilation problem: \n\tThe method findByEmail(String) is undefined for the type UsuarioRepository\n");
+  }
+
 }

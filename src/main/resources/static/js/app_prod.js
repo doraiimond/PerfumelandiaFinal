@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/api/v1/productos";
+const API_URL = "http://192.168.1.24:8080/api/v2/productos";
     
     function agregarProducto() {
       const nombre = document.getElementById("nombre").value;
@@ -6,7 +6,7 @@ const API_URL = "http://localhost:8080/api/v1/productos";
       const stock = parseInt(document.getElementById("stock").value);
       const precio = parseInt(document.getElementById("precio").value);
 
-      fetch("http://localhost:8080/api/v1/productos", {
+      fetch("http://192.168.1.24:8080/api/v2/productos", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
